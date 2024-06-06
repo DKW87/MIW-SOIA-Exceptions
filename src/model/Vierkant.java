@@ -18,7 +18,13 @@ public class Vierkant {
         return this.zijde * this.zijde;
     }
 
-    public static double berekenZijde(double oppervlakte){
+    public static double berekenZijde(double oppervlakte) throws IllegalArgumentException {
+        final double NUL = 0.00;
+
+        if (oppervlakte < NUL) {
+            throw new IllegalArgumentException("Jaar ervaring moet groter dan 0 zijn.");
+        }
+
         return Math.sqrt(oppervlakte);
     }
 
@@ -29,10 +35,6 @@ public class Vierkant {
     }
 
     // getters en setters
-
-    public double getZijde() {
-        return zijde;
-    }
 
     public void setZijde(double zijde) {
         this.zijde = zijde;

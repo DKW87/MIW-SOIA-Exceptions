@@ -23,17 +23,35 @@ public class ExceptionsLauncher {
                 System.out.println(aangemaakteVierkant);
                 invoerCorrect = true;
             }
-            catch (InputMismatchException fout) {
+            catch (InputMismatchException geenGetal) {
                 System.out.println("Je moet een getal invoeren met een komma!");
                 userInput.nextLine(); // clear buffer
             }
 
         } while (!invoerCorrect);
 
-        System.out.print("Voer een oppervlakte in: ");
-        opgegevenGetal = userInput.nextDouble();
-        System.out.printf("Met een oppervlakte van %.2f heeft de vierkant een zijde van %.2f. \n",
-                opgegevenGetal, Vierkant.berekenZijde(opgegevenGetal));
+        invoerCorrect = false;
+
+        do {
+
+            System.out.print("Voer een oppervlakte in: ");
+
+            try {
+                opgegevenGetal = userInput.nextDouble();
+                System.out.printf("Met een oppervlakte van %.2f heeft de vierkant een zijde van %.2f. \n",
+                        opgegevenGetal, Vierkant.berekenZijde(opgegevenGetal));
+                invoerCorrect = true;
+            }
+            catch (InputMismatchException geenGetal) {
+                System.out.println("Je moet een getal invoeren met een komma!");
+                userInput.nextLine(); // clear buffer
+            }
+            catch (IllegalArgumentException negatiefGetal) {
+                System.out.println(negatiefGetal.getMessage());
+                userInput.nextLine(); // clear buffer
+            }
+
+        } while (!invoerCorrect);
 
     } // main
 } // klasse
