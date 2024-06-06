@@ -24,7 +24,8 @@ public class Vierkant {
 
     @Override
     public String toString() {
-        return "Deze vierkant met een zijde van " + zijde + "heeft een oppervlakte van " + this.getOppervlakte() + "\n";
+        return String.format("Met een zijde van %.2f heeft het de vierkant de volgende oppervlakte: %.2f",
+                zijde, this.getOppervlakte());
     }
 
     // getters en setters
