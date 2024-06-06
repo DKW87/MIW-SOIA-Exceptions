@@ -2,22 +2,33 @@ package controller;
 
 import model.Vierkant;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
-
-
 
 public class ExceptionsLauncher {
     public static void main(String[] args) {
 
         //variabelen
         double opgegevenGetal;
+        boolean invoerCorrect = false;
         Scanner userInput = new Scanner(System.in);
 
-        System.out.print("Voer een zijde in: ");
-        opgegevenGetal = userInput.nextDouble();
+        do {
 
-        Vierkant aangemaakteVierkant = new Vierkant(opgegevenGetal);
-        System.out.println(aangemaakteVierkant);
+            System.out.print("Voer een zijde in: ");
+
+            try {
+                opgegevenGetal = userInput.nextDouble();
+                Vierkant aangemaakteVierkant = new Vierkant(opgegevenGetal);
+                System.out.println(aangemaakteVierkant);
+                invoerCorrect = true;
+            }
+            catch (InputMismatchException fout) {
+                System.out.println("Je moet een getal invoeren met een komma!");
+                userInput.nextLine(); // clear buffer
+            }
+
+        } while (!invoerCorrect);
 
         System.out.print("Voer een oppervlakte in: ");
         opgegevenGetal = userInput.nextDouble();
